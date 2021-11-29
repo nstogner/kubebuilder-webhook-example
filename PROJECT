@@ -1,0 +1,6 @@
+domain: example.com
+layout:
+- go.kubebuilder.io/v3
+projectName: pod-webhook-example
+repo: tbd-repo/pod-webhook-example
+version: "3"

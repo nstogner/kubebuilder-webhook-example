@@ -15,4 +15,3 @@ kubectl get pods -n pod-webhook-example-system
 # Apply an example Pod.
 kubectl apply -f hack/pod.yaml
 ```
-# pod-webhook-example
