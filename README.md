@@ -9,6 +9,7 @@ kind create cluster
 # Setup cluster dependencies (cert-manager).
 ./hack/setup.sh
 
+# Deploy to internal cluster (with a placeholder image that is loaded into kind).
 make kind-deploy IMG=example.com/abc/manager:v0.0.1
 
 # Wait for pods to become ready.
