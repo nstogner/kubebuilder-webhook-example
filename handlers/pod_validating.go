@@ -1,4 +1,4 @@
-package main
+package handlers
 
 import (
 	"context"
@@ -12,14 +12,14 @@ import (
 
 // +kubebuilder:webhook:path=/validate-v1-pod,mutating=false,failurePolicy=Ignore,groups="",resources=pods,verbs=create;update,versions=v1,name=vpod.kb.io,admissionReviewVersions=v1,sideEffects=NoneOnDryRun
 
-// podValidator validates Pods
-type podValidator struct {
+// PodValidator validates Pods
+type PodValidator struct {
 	Client  client.Client
 	decoder *admission.Decoder
 }
 
 // podValidator admits a pod if a specific annotation exists.
-func (v *podValidator) Handle(ctx context.Context, req admission.Request) admission.Response {
+func (v *PodValidator) Handle(ctx context.Context, req admission.Request) admission.Response {
 	pod := &corev1.Pod{}
 
 	err := v.decoder.Decode(req, pod)
@@ -43,7 +43,7 @@ func (v *podValidator) Handle(ctx context.Context, req admission.Request) admiss
 // A decoder will be automatically injected.
 
 // InjectDecoder injects the decoder.
-func (v *podValidator) InjectDecoder(d *admission.Decoder) error {
+func (v *PodValidator) InjectDecoder(d *admission.Decoder) error {
 	v.decoder = d
 	return nil
 }

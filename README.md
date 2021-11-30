@@ -1,6 +1,8 @@
 # Pod Webhook Example
 
-## Local Development
+An example of a [kubebuilder](https://github.com/kubernetes-sigs/kubebuilder) project that implements mutating and validating webhooks for a core type (Pods). NOTE: The kubebuilder tool has native support for implementing webhooks for custom resources.
+
+## Local Quickstart
 
 ```sh
 # Create a local cluster.
@@ -12,15 +14,14 @@ kind create cluster
 # Deploy to internal cluster (with a placeholder image that is loaded into kind).
 make kind-deploy IMG=example.com/abc/manager:v0.0.1
 
-# Wait for pods to become ready.
-kubectl get pods -n pod-webhook-example-system
+# Wait for Pods to become ready.
+kubectl get pods -n pod-webhook-example-system -w
 
 # Apply an example Pod.
 kubectl apply -f hack/pod.yaml
 
-# ... Edit Pod according to output.
-# ... Reapply Pod.
+# ... Edit Pod according to output, and re-apply ...
 
 # View mutated Pod.
-kubectl get -f ./hack/pod.yaml -oyaml
+kubectl get -f ./hack/pod.yaml -oyaml | grep injected-annotation
 ```
