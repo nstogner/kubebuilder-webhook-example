@@ -3,7 +3,7 @@ kind: Pod
 metadata:
   name: nginx
   annotations:
-    annotation-must-exist: foo
+    annotation-must-exist: bar
 spec:
   containers:
   - name: nginx
